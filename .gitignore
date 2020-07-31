@@ -1,4 +1,7 @@
 *.pyc
 *.ipynb
 *.egg-info
+*.xlsx
+
 conf.yaml
+outputs

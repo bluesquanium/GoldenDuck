@@ -19,5 +19,5 @@ print(json_data)
 
 df = pd.DataFrame(json_data['list'])
 
-xlxs_dir = os.path.join(os.getcwd(), "test" + ".xlsx")
+xlxs_dir = os.path.join(c.outputDir, "test" + ".xlsx")
 df.to_excel(xlxs_dir)
