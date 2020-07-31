@@ -1,2 +1,4 @@
+*.pyc
 *.ipynb
+*.egg-info
 conf.yaml
