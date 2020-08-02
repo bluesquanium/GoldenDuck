@@ -1,8 +1,6 @@
 import yaml
 import os
 
-# os.getcwd()+"/deployment/conf.yaml"
-
 class Config:
     yamlPath = ""
     dartApiKey = ""
