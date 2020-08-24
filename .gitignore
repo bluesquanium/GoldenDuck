@@ -4,3 +4,5 @@
 
 conf.yaml
 outputs
+dist
+build
