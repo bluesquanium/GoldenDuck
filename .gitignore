@@ -3,6 +3,9 @@
 *.egg-info
 
 conf.yaml
+
+# Directories #
 outputs/*
-dist
-build
+!outputs/*.md
+dist/
+build/
