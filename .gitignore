@@ -3,6 +3,6 @@
 *.egg-info
 
 conf.yaml
-outputs
+outputs/*
 dist
 build
