@@ -2,9 +2,26 @@
 
 It crawls the stock data & visualizes them.
 
+
+### Create DB
+Use goldenduck release chart's mysql chart.
+
+### Enter to DB
+```
+mysql -h {YOUR_MYSQL_SERVICE_NAME} -u {USER_NAME} -p
+```
+And enter the your password. You can check your password by below command.
+```
+MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace {YOUR_MYSQL_NAMESPACE} {YOUR_MYSQL_SECRET_NAME} -o jsonpath="{.data.mysql-root-password}" | base64 --decode; echo)
+echo $MYSQL_ROOT_PASSWORD
+```
+
 ### CorpList
 
-```create database test;```
+```
+create database test;
+```
+
 ```
 create table Company (
   corpCode char(6) not null,
@@ -21,6 +38,7 @@ create table Company (
   primary key (corpCode)
 );
 ```
+
 ```
 +-----------------+-----------+------+-----+---------+-------+
 | Field           | Type      | Null | Key | Default | Extra |

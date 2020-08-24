@@ -4,7 +4,7 @@ import os
 import goldenduck.pkg.config as config
 
 # config 불러오기
-c = config.load(str(pathlib.Path(os.getcwd()).parent) + "/conf.yaml")
+c = config.load(str(pathlib.Path(os.getcwd())) + "/conf.yaml")
 api_key=c.dartApiKey
 dart.set_api_key(api_key=api_key)
 
@@ -42,7 +42,7 @@ df_cf = fs['cf'] # 또는 df = fs[3] 또는 df = fs.show('cf')
 labels_cf = fs.labels['cf']
 
 # 재무제표 일괄저장 (default: 실행폴더/fsdata/{corp_code}_{report_tp}.xlsx)
-fs.save()
+#fs.save()
 
 # 재무제표 일괄저장
 fs.save(path=c.outputDir)

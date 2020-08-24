@@ -6,12 +6,22 @@ class Config:
     dartApiKey = ""
     outputDir = ""
 
+    #MYSQL
+    mysqlUser = ""
+    mysqlPassword = ""
+    mysqlDatabase = ""
+    mysqlTable = ""
+
     def __init__(self, yamlPath):
         byte = open(yamlPath, "r")
         y = yaml.load(byte, Loader=yaml.FullLoader)
         self.yamlPath = yamlPath
         self.dartApiKey = y["dart_api_key"]
         self.outputDir = y["output_dir"]
+        self.mysqlUser = y["mysql_user"]
+        self.mysqlPassword = y["mysql_password"]
+        self.mysqlDatabase = y["mysql_database"]
+        self.mysqlTable = y["mysql_table"]
 
     def load(self, yamlPath):
         byte = open(yamlPath, "r")
@@ -19,6 +29,10 @@ class Config:
         self.yamlPath = yamlPath
         self.dartApiKey = y["dart_api_key"]
         self.outputDir = y["output_dir"]
+        self.mysqlUser = y["mysql_user"]
+        self.mysqlPassword = y["mysql_password"]
+        self.mysqlDatabase = y["mysql_database"]
+        self.mysqlTable = y["mysql_table"]
 
 def load(yamlPath):
     return Config(yamlPath)
