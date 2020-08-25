@@ -19,7 +19,16 @@ password = c.mysqlPassword
 db = c.mysqlDatabase
 table = c.mysqlTable
 
-print(table)
+# connect to db
+conn = pymysql.connect(host=host, port=port, user=user, password=password, db=db, charset='utf8')
+curs = conn.cursor()
+
+# Print the number of elements in the table
+sql = 'select count(*) from Company'
+curs.execute(sql)
+rows = curs.fetchall()
+print(rows[0][0])
+
 if False:
 	# connect to db
 	conn = pymysql.connect(host=host, port=port, user=user, password=password, db=db, charset='utf8')
