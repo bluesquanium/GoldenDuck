@@ -7,6 +7,8 @@ class Config:
     outputDir = ""
 
     #MYSQL
+    mysqlHost = ""
+    mysqlPort = ""
     mysqlUser = ""
     mysqlPassword = ""
     mysqlDatabase = ""
@@ -18,6 +20,8 @@ class Config:
         self.yamlPath = yamlPath
         self.dartApiKey = y["dart_api_key"]
         self.outputDir = y["output_dir"]
+        self.mysqlHost = y["mysql_host"]
+        self.mysqlPort = y["mysql_port"]
         self.mysqlUser = y["mysql_user"]
         self.mysqlPassword = y["mysql_password"]
         self.mysqlDatabase = y["mysql_database"]
@@ -29,6 +33,8 @@ class Config:
         self.yamlPath = yamlPath
         self.dartApiKey = y["dart_api_key"]
         self.outputDir = y["output_dir"]
+        self.mysqlHost = y["mysql_host"]
+        self.mysqlPort = y["mysql_port"]
         self.mysqlUser = y["mysql_user"]
         self.mysqlPassword = y["mysql_password"]
         self.mysqlDatabase = y["mysql_database"]

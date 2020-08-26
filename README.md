@@ -36,7 +36,7 @@ create table Company (
   url char (255),
   sector char (255),
   primary key (corpCode)
-);
+) default character set utf8 collate utf8_general_ci;
 ```
 
 ```

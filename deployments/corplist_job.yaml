@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: corplist
+  namespace: gd
+spec:
+  template:
+    # This is the pod template
+    spec:
+      containers:
+      - name: corplist
+        image: docker.io/bluesquanium/corplist
+        #command: ['sh', '-c', 'echo "Hello, Kubernetes!" && sleep 3600']
+      restartPolicy: OnFailure
+    # The pod template ends here
