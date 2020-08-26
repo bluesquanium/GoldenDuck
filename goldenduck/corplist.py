@@ -8,6 +8,15 @@ import pandas as pd
 import pymysql
 import goldenduck.pkg.config as config
 
+# TODO:
+# It can't update datas. Only can add new data.
+# So I have to change the logic like below:
+# When a data already exists, do update. Otherwise, do create.
+
+# TODO:
+# Job -> CronJob
+
+
 # config 불러오기
 c = config.load(str(pathlib.Path(os.getcwd())) + "/conf.yaml")
 
