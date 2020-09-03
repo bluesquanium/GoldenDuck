@@ -43,7 +43,7 @@ try:
 		df = df.fillna('')
 
 		# Execute the SQL command
-		sql = 'insert into ' + table + ' (corpCode, koreanName, country, province, listingDate, settlementMonth, ceo, url) values ("' \
+		sql = 'insert into ' + table + ' (stockCode, koreanName, country, province, listingDate, settlementMonth, ceo, url) values ("' \
 		+ row['종목코드'] + '", "' \
 		+ row['회사명'] + '", "' \
 		+ 'Republic of Korea' + '", "' \

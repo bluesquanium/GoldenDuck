@@ -16,3 +16,4 @@ RUN python3 setup.py install
 
 #CMD ["sleep", "1000"]
 CMD ["python3", "goldenduck/corplist.py"]
+#CMD ["python3", "goldenduck/corplist-update-corpcode.py"]

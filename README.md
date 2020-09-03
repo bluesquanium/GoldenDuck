@@ -43,7 +43,7 @@ create table Company (
 +-----------------+-----------+------+-----+---------+-------+
 | Field           | Type      | Null | Key | Default | Extra |
 +-----------------+-----------+------+-----+---------+-------+
-| corpCode        | char(6)   | NO   | PRI | NULL    |       |
+| corpCode        | char(8)   | NO   | PRI | NULL    |       |
 | stockCode       | char(6)   | YES  |     | NULL    |       |
 | name            | char(64)  | YES  |     | NULL    |       |
 | koreanName      | char(64)  | NO   |     | NULL    |       |
