@@ -8,7 +8,7 @@ import pandas as pd
 
 label_ko = {
     '유동자산': "totalCurrentAssets",
-    '현금및현금성자산': "cashAndCashEquivalent float",
+    '현금및현금성자산': "cashAndCashEquivalent",
     '단기금융상품': "shortTermFinancialInstruments",
     '단기매도가능금융자산': "availableForSaleFinancialAsset",
     '단기상각후원가금융자산': "shortTermAfterDepreciationCapitalAsset",
@@ -64,8 +64,66 @@ label_ko = {
     '자본과부채총계': "totalEquityAndLiabilities",
 }
 
+label_id = {
+    'ifrs-full_CurrentAssets': "totalCurrentAssets",
+    'ifrs-full_CashAndCashEquivalents': "cashAndCashEquivalent",
+    'dart_ShortTermDepositsNotClassifiedAsCashEquivalents': "shortTermFinancialInstruments",
+    'entity00126380_udf_BS_2020210113420730_CurrentAssets': "availableForSaleFinancialAsset",
+    'entity00126380_udf_BS_201851017339116_CurrentAssets': "shortTermAfterDepreciationCapitalAsset",
+    'ifrs-full_CurrentFinancialAssetsAtFairValueThroughProfitOrLossMandatorilyMeasuredAtFairValue': "currentFinancialAssetsAtFairValueThroughProfitOrLoss",
+    'dart_ShortTermTradeReceivable': "shortTermTradeReceivable",
+    'entity00126380_udf_BS_201710182279121_CurrentAssets': "otherAccountReceivable",
+    'entity00126380_udf_BS_20171018221011173_CurrentAssets': "advancePayment",
+    'entity00126380_udf_BS_2017101822109437_CurrentAssets': "prepaidExpense",
+    'ifrs-full_Inventories': "inventory",
+    'dart_OtherCurrentAssets': "otherCurrentAsset",
+    'ifrs-full_NoncurrentAssets': "totalNonCurrentAssets",
+    'entity00126380_udf_BS_2020210113513266_NoncurrentAssets': "longTermDepositsNotClassified",
+    'entity00126380_udf_BS_2020210113515706_NoncurrentAssets': "heldToMaturity",
+    'entity00126380_udf_BS_20185101782898_NoncurrentAssets': "afterDepreciationCapitalAsset",
+    'entity00126380_udf_BS_201851017830322_NoncurrentAssets': "ociFairValueCapitalAsset",
+    'entity00126380_udf_BS_201851017832579_NoncurrentAssets': "incomeFairValueCapitalAsset",
+    'entity00126380_udf_BS_20171018221637438_NoncurrentAssets': "availableForSaleFinancialAssetAssociatesAndJointVentures",
+    'ifrs-full_PropertyPlantAndEquipment': "propertyAndPlantAndEquipment",
+    'ifrs-full_IntangibleAssetsOtherThanGoodwill': "intangibleAssets",
+    'dart_DepositsForSeveranceInsurance': "depositsForSeveranceInsurance",
+    'ifrs-full_DeferredTaxAssets': "deferredTasAssets",
+    'dart_OtherNonCurrentAssets': "otherNonCurrentAssets",
+    'ifrs-full_Assets': "totalAssets",
+    'ifrs-full_CurrentLiabilities': "totalCurrentLiabilities",
+    'entity00126380_udf_BS_20171018222617796_CurrentLiabilities': "accountPayableTrade",
+    'ifrs-full_ShorttermBorrowings': "shortTermBorrowings",
+    'entity00126380_udf_BS_20171018222642264_CurrentLiabilities': "otherPayble",
+    'entity00126380_udf_BS_20171018222640707_CurrentLiabilities': "advanceReceived",
+    'entity00126380_udf_BS_20171018222637261_CurrentLiabilities': "withholdings",
+    'entity00126380_udf_BS_20171018222635206_CurrentLiabilities': "accruedExpense",
+    'ifrs-full_CurrentTaxLiabilities': "currentTaxLiabilities",
+    'entity00126380_udf_BS_20171024141934989_CurrentLiabilities': "currentPortionOfLongTermBorrowingsAndDebentures",
+    'ifrs-full_CurrentProvisions': "currentProvisions",
+    'dart_OtherCurrentLiabilities': "otherCurrentLiabilities",
+    'ifrs-full_NoncurrentLiabilities': "totalNonCurrentLiabilities",
+    'dart_BondsIssued': "bondsIssued",
+    'dart_LongTermBorrowingsGross': "longTermBorrowingsAndGross",
+    'dart_LongTermOtherPayablesGross': "longTermOtherPayablesAndGross",
+    'dart_PostemploymentBenefitObligations': "postEmploymentBenefitObligations",
+    'ifrs-full_DeferredTaxLiabilities': "deferredTaxLiabilities",
+    'ifrs-full_NoncurrentProvisions': "nonCurrentProvisions",
+    'dart_OtherNonCurrentLiabilities': "otherNonCurrentLiabilities",
+    'ifrs-full_Liabilities': "totalLiabilities",
+    'ifrs-full_EquityAttributableToOwnersOfParent': "totalEquityAttributableToOwnersOfParent",
+    'ifrs-full_IssuedCapital': "totalIssuedCapital",
+    'dart_IssuedCapitalOfPreferredStock': "issuedCapitalOfPreferredStock",
+    'dart_IssuedCapitalOfCommonStock': "issuedCapitalOfCommonStock",
+    'ifrs-full_SharePremium': "sharePremium",
+    'ifrs-full_RetainedEarnings': "retainedEarnings",
+    'dart_ElementsOfOtherStockholdersEquity': "elementsOfOtherStockholdersEquity",
+    'ifrs-full_NoncontrollingInterests': "nonControllingInterests",
+    'ifrs-full_Equity': "totalEquity",
+    'ifrs-full_EquityAndLiabilities': "totalEquityAndLiabilities",
+}
+
 # Load config
-c = config.load(str(pathlib.Path(os.getcwd()).parent) + "/fs-conf.yaml")
+c = config.load(str(pathlib.Path(os.getcwd())) + "/fs-conf.yaml")
 
 # config
 host = c.mysqlHost
@@ -105,18 +163,26 @@ for row in rows:
         # Temp for test
         break
 
-    corpCode = row['corpCode']
+    print(row[0])
+    corpCode = row[0] # row['corpCode']
     fs = dart.fs.extract(corp_code=corpCode, bgn_de='20190101', lang='en', separator=False)
     df_fs = fs['bs'].iloc[:,[0, 1, 2, 8]]
     df_fs = df_fs.fillna(DEFAULT_VALUE)
+    print(df_fs.head())
 
     sqlForm = 'insert into {table} ({list}) values ({values})'
     listArr = []
     valuesArr = []
-    for label in label_ko:
-        listArr.append(label_ko[label])
-        valuesArr.append(df_fs[df_fs.iloc[:,1] == label].iloc[0,3])
-    
+    listArr.append("corpCode")
+    valuesArr.append('"' + row[0] + '"')
+    listArr.append("date")
+    valuesArr.append(df_fs.columns[3][0])
+    for label in label_id:
+        if len(df_fs[df_fs.iloc[:,0] == label]) != 0:
+            listArr.append(label_id[label])
+            valuesArr.append(df_fs[df_fs.iloc[:,0] == label].iloc[0,3])
+        else:
+            print(label + "was empty!")
     # Execute the SQL command
     curs.execute( sqlForm.format(table=table, list=", ".join(listArr), values=", ".join(map(str, valuesArr))) )
     # Commit changes
