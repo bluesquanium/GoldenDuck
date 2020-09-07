@@ -1,12 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: corplist-update
+  name: financial-statement
   namespace: gd
 spec:
   template:
     spec:
       containers:
-      - name: corplist-update
-        image: docker.io/bluesquanium/corplist-update-corpcode
+      - name: financial-statement
+        image: docker.io/bluesquanium/financial-statement
       restartPolicy: OnFailure

@@ -1,6 +1,7 @@
 FROM python:3.8.2
 
 COPY ./conf.yaml /app/
+COPY ./fs-conf.yaml /app/
 COPY ./requirements.txt /app/
 COPY ./setup.py /app/
 COPY ./goldenduck/ /app/goldenduck/
@@ -15,5 +16,6 @@ RUN python3 setup.py build
 RUN python3 setup.py install
 
 #CMD ["sleep", "1000"]
-CMD ["python3", "goldenduck/corplist.py"]
+#CMD ["python3", "goldenduck/corplist.py"]
 #CMD ["python3", "goldenduck/corplist-update-corpcode.py"]
+CMD ["python3", "goldenduck/financialStatement.py"]
