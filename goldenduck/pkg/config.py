@@ -13,6 +13,7 @@ class Config:
     mysqlPassword = ""
     mysqlDatabase = ""
     mysqlTable = ""
+    mysqlCorplistTable = ""
 
     def __init__(self, yamlPath):
         byte = open(yamlPath, "r")
@@ -26,6 +27,7 @@ class Config:
         self.mysqlPassword = y["mysql_password"]
         self.mysqlDatabase = y["mysql_database"]
         self.mysqlTable = y["mysql_table"]
+        self.mysqlCorplistTable = y["mysql_corplist_table"]
 
     def load(self, yamlPath):
         byte = open(yamlPath, "r")
@@ -39,6 +41,7 @@ class Config:
         self.mysqlPassword = y["mysql_password"]
         self.mysqlDatabase = y["mysql_database"]
         self.mysqlTable = y["mysql_table"]
+        self.mysqlCorplistTable = y["mysql_corplist_table"]
 
 def load(yamlPath):
     return Config(yamlPath)

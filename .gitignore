@@ -2,7 +2,7 @@
 *.ipynb
 *.egg-info
 
-conf.yaml
+*conf.yaml
 
 # Directories #
 outputs/*
